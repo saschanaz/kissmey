@@ -8,4 +8,4 @@ No new feature will be born here, see [Misskey](https://github.com/misskey-dev/m
 
 * Get JSON from Fastify and pass it to Rust backend
 * Add Jest/E2E tests to the original Misskey repository and sync back here to keep being compatible
-	* But write unit tests in Rust
+	* But also write unit tests in Rust
