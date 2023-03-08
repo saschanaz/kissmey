@@ -1,3 +1,4 @@
+use axum::http::StatusCode;
 use percent_encoding::{utf8_percent_encode, CONTROLS};
 use sea_orm::entity::prelude::*;
 use sea_orm::sea_query::{self, Expr, Iden, Query};
@@ -13,7 +14,7 @@ enum InformationSchema {
     TableType,
 }
 
-pub async fn reset_db(
+async fn reset_db_impl(
     host: &str,
     port: u16,
     db: &str,
@@ -46,4 +47,13 @@ pub async fn reset_db(
     }
 
     Ok(())
+}
+
+pub async fn reset_db() -> StatusCode {
+    let result = reset_db_impl("127.0.0.1", 54312, "test-misskey", "postgres", "").await;
+    if result.is_ok() {
+        StatusCode::NO_CONTENT
+    } else {
+        StatusCode::INTERNAL_SERVER_ERROR
+    }
 }
