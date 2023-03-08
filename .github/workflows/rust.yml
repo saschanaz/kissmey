@@ -30,7 +30,8 @@ jobs:
       - name: Run cargo test
         uses: actions-rs/cargo@v1
         with:
-          command: test --manifest-path packages/backend-rust/Cargo.toml
+          command: test
+          args: --manifest-path packages/backend-rust/Cargo.toml
 
   lints:
     name: Lints
