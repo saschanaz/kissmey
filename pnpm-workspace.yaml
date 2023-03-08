@@ -1,4 +1,5 @@
 packages:
  - 'packages/backend'
+ - 'packages/backend-rust'
  - 'packages/frontend'
  - 'packages/sw'
