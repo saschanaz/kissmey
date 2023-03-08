@@ -1,4 +1,5 @@
 mod misc;
+mod config;
 
 use axum::{routing::post, Router};
 use std::net::SocketAddr;

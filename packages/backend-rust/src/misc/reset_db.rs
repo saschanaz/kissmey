@@ -4,6 +4,8 @@ use sea_orm::entity::prelude::*;
 use sea_orm::sea_query::{self, Expr, Iden, Query};
 use sea_orm::{Condition, Database};
 
+use crate::config::{load_config, Config, DbConfig};
+
 #[derive(Iden)]
 enum InformationSchema {
     #[iden = "information_schema"]
@@ -14,15 +16,15 @@ enum InformationSchema {
     TableType,
 }
 
-async fn reset_db_impl(
-    host: &str,
-    port: u16,
-    db: &str,
-    username: &str,
-    password: &str,
-) -> Result<(), DbErr> {
-    let username = utf8_percent_encode(username, CONTROLS);
-    let password = utf8_percent_encode(password, CONTROLS);
+async fn reset_db_impl() -> Result<(), DbErr> {
+    let config = load_config();
+
+		let Config { db } = config;
+		let DbConfig { host, port, db, user, pass } = db;
+
+    let username = utf8_percent_encode(&user[..], CONTROLS);
+    let password = utf8_percent_encode(&pass[..], CONTROLS);
+
     let database_url = format!("postgres://{username}:{password}@{host}:{port}/{db}");
     let db = Database::connect(&database_url).await?;
 
@@ -50,7 +52,7 @@ async fn reset_db_impl(
 }
 
 pub async fn reset_db() -> StatusCode {
-    let result = reset_db_impl("127.0.0.1", 54312, "test-misskey", "postgres", "").await;
+    let result = reset_db_impl().await;
     if result.is_ok() {
         StatusCode::NO_CONTENT
     } else {
