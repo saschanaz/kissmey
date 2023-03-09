@@ -58,7 +58,10 @@ pub async fn reset_db() -> Result<(), DbErr> {
             .await?;
     }
 
-    Ok(())
+    // XXX: Close explicitly, because dropping won't close it automatically.
+    // See also https://github.com/launchbadge/sqlx/pull/2376
+    // (The connection should ultimately be kept and be reused instead)
+    db.close().await
 }
 
 pub async fn reset_redis() -> redis::RedisResult<()> {
