@@ -1,5 +1,4 @@
-mod config;
-mod misc;
+mod endpoints;
 
 use axum::{routing::post, Router};
 use std::net::SocketAddr;
@@ -10,7 +9,7 @@ async fn main() {
     tracing_subscriber::fmt::init();
 
     // build our application with a route
-    let app = Router::new().route("/reset-db", post(misc::reset_db::reset_db));
+    let app = Router::new().route("/reset-db", post(endpoints::reset_db::reset_db));
 
     // run our app with hyper
     // `axum::Server` is a re-export of `hyper::Server`

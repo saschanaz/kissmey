@@ -1,0 +1,11 @@
+[package]
+name = "database-helper"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+config-helper = { path = "../config-helper" }
+percent-encoding = "2.2.0"
+sea-orm = { version = "0.11.0", features = ["sqlx-postgres", "runtime-tokio-rustls", "macros"] }

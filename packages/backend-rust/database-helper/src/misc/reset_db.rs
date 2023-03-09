@@ -1,10 +1,9 @@
-use axum::http::StatusCode;
 use percent_encoding::{utf8_percent_encode, CONTROLS};
 use sea_orm::entity::prelude::*;
 use sea_orm::sea_query::{self, Expr, Iden, Query};
 use sea_orm::{Condition, Database};
 
-use crate::config::{load_config, Config, DbConfig};
+use config_helper::{load_config, Config, DbConfig};
 
 #[derive(Iden)]
 enum InformationSchema {
@@ -16,7 +15,7 @@ enum InformationSchema {
     TableType,
 }
 
-async fn reset_db_impl() -> Result<(), DbErr> {
+pub async fn reset_db() -> Result<(), DbErr> {
     let config = load_config();
 
     let Config { db } = config;
@@ -55,13 +54,4 @@ async fn reset_db_impl() -> Result<(), DbErr> {
     }
 
     Ok(())
-}
-
-pub async fn reset_db() -> StatusCode {
-    let result = reset_db_impl().await;
-    if result.is_ok() {
-        StatusCode::NO_CONTENT
-    } else {
-        StatusCode::INTERNAL_SERVER_ERROR
-    }
 }

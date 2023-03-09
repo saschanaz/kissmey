@@ -1,9 +1,9 @@
 use serde::Deserialize;
 use std::path::{Path, PathBuf};
 
-pub fn config_path() -> PathBuf {
+fn config_path() -> PathBuf {
     let file_dir = Path::new(file!()).parent().expect("src directory");
-    let config_dir = file_dir.join("../../../.config");
+    let config_dir = file_dir.join("../../../../.config");
     match std::env::var("NODE_ENV") {
         Ok(s) if s.as_str() == "test" => config_dir.join("test.yml"),
         _ => config_dir.join("default.yml"),

@@ -321,6 +321,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "config-helper"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_yaml",
+]
+
+[[package]]
 name = "core-foundation-sys"
 version = "0.8.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -406,6 +414,15 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn",
+]
+
+[[package]]
+name = "database-helper"
+version = "0.1.0"
+dependencies = [
+ "config-helper",
+ "percent-encoding",
+ "sea-orm",
 ]
 
 [[package]]
@@ -792,10 +809,7 @@ name = "kissmey"
 version = "0.1.0"
 dependencies = [
  "axum",
- "percent-encoding",
- "sea-orm",
- "serde",
- "serde_yaml",
+ "database-helper",
  "tokio",
  "tracing",
  "tracing-subscriber",
