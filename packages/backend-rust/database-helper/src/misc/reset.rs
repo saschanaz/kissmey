@@ -1,9 +1,9 @@
 use percent_encoding::{utf8_percent_encode, CONTROLS};
 use sea_orm::entity::prelude::*;
 use sea_orm::sea_query::{self, Expr, Iden, Query};
-use sea_orm::{Condition, Database};
+use sea_orm::{Condition, ConnectOptions, Database};
 
-use config_helper::{load_config, Config, DbConfig, RedisConfig};
+use config_helper::{is_test_mode, load_config, Config, DbConfig, RedisConfig};
 
 #[derive(Iden)]
 enum InformationSchema {
@@ -31,7 +31,12 @@ pub async fn reset_db() -> Result<(), DbErr> {
     let password = utf8_percent_encode(&pass[..], CONTROLS);
 
     let database_url = format!("postgres://{username}:{password}@{host}:{port}/{db}");
-    let db = Database::connect(&database_url).await?;
+    let mut options: ConnectOptions = database_url.into();
+    if is_test_mode() {
+        // Don't want to let db messages dominate the whole test log
+        options.sqlx_logging_level(log::LevelFilter::Error);
+    }
+    let db = Database::connect(options).await?;
 
     let mut select = Query::select();
     select
