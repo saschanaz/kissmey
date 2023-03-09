@@ -435,7 +435,6 @@ name = "database-helper"
 version = "0.1.0"
 dependencies = [
  "config-helper",
- "log",
  "percent-encoding",
  "redis",
  "sea-orm",

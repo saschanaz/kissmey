@@ -34,7 +34,7 @@ pub async fn reset_db() -> Result<(), DbErr> {
     let mut options: ConnectOptions = database_url.into();
     if is_test_mode() {
         // Don't want to let db messages dominate the whole test log
-        options.sqlx_logging_level(log::LevelFilter::Error);
+        options.sqlx_logging(false);
     }
     let db = Database::connect(options).await?;
 
