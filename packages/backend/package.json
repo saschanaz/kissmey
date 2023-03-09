@@ -46,6 +46,7 @@
 		"@fastify/cors": "8.2.0",
 		"@fastify/http-proxy": "8.4.0",
 		"@fastify/multipart": "7.4.1",
+		"@fastify/reply-from": "9.0.0",
 		"@fastify/static": "6.9.0",
 		"@fastify/view": "7.4.1",
 		"@nestjs/common": "9.3.9",

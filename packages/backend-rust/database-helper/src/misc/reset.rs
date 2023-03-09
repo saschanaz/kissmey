@@ -3,7 +3,7 @@ use sea_orm::entity::prelude::*;
 use sea_orm::sea_query::{self, Expr, Iden, Query};
 use sea_orm::{Condition, Database};
 
-use config_helper::{load_config, Config, DbConfig};
+use config_helper::{load_config, Config, DbConfig, RedisConfig};
 
 #[derive(Iden)]
 enum InformationSchema {
@@ -54,4 +54,21 @@ pub async fn reset_db() -> Result<(), DbErr> {
     }
 
     Ok(())
+}
+
+pub async fn reset_redis() -> redis::RedisResult<()> {
+	let config = load_config();
+
+	let Config { redis, .. } = config;
+	let RedisConfig {
+			host,
+			port,
+	} = redis;
+
+	let client = redis::Client::open((host, port)).expect("Connect to Redis");
+	let mut con = client.get_async_connection().await?;
+
+	redis::cmd("FLUSHDB").query_async(&mut con).await?;
+
+	Ok(())
 }

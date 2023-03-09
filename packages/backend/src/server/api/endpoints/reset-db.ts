@@ -23,6 +23,8 @@ export const paramDef = {
 	required: [],
 } as const;
 
+export const proxyToRust = true;
+
 // eslint-disable-next-line import/no-default-export
 @Injectable()
 export default class extends Endpoint<typeof meta, typeof paramDef> {

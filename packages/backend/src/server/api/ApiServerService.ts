@@ -13,6 +13,8 @@ import { ApiCallService } from './ApiCallService.js';
 import { SignupApiService } from './SignupApiService.js';
 import { SigninApiService } from './SigninApiService.js';
 import type { FastifyInstance, FastifyPluginOptions } from 'fastify';
+import fastifyReplyFrom from '@fastify/reply-from';
+import { RustPeerServerService } from '../RustPeerServerService.js';
 
 @Injectable()
 export class ApiServerService {
@@ -35,6 +37,7 @@ export class ApiServerService {
 		private apiCallService: ApiCallService,
 		private signupApiService: SignupApiService,
 		private signinApiService: SigninApiService,
+		private rustPeerServerService: RustPeerServerService,
 	) {
 		//this.createServer = this.createServer.bind(this);
 	}
@@ -54,6 +57,10 @@ export class ApiServerService {
 
 		fastify.register(fastifyCookie, {});
 
+		fastify.register(fastifyReplyFrom, {
+			base: this.rustPeerServerService.destination,
+		});
+
 		// Prevent cache
 		fastify.addHook('onRequest', (request, reply, done) => {
 			reply.header('Cache-Control', 'private, max-age=0, must-revalidate');
@@ -65,10 +72,17 @@ export class ApiServerService {
 				name: endpoint.name,
 				meta: endpoint.meta,
 				params: endpoint.params,
+				proxyToRust: endpoint.proxyToRust,
 				exec: this.moduleRef.get('ep:' + endpoint.name, { strict: false }).exec,
 			};
 
-			if (endpoint.meta.requireFile) {
+			if (endpoint.proxyToRust) {
+				fastify.all('/' + endpoint.name, async (_request, reply) => {
+					// (request is implicitly passed)
+					reply.from('/api/' + endpoint.name);
+					return reply;
+				});
+			} else if (endpoint.meta.requireFile) {
 				fastify.all<{
 					Params: { endpoint: string; },
 					Body: Record<string, unknown>,

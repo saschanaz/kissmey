@@ -4,6 +4,7 @@
 	"scripts": {
 		"build": "cargo build",
 		"test": "cargo test",
-		"lint": "cargo fmt && cargo clippy"
+		"lint": "cargo fmt && cargo clippy",
+		"start": "cargo run"
 	}
 }

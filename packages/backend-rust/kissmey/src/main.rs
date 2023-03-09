@@ -9,7 +9,7 @@ async fn main() {
     tracing_subscriber::fmt::init();
 
     // build our application with a route
-    let app = Router::new().route("/reset-db", post(endpoints::reset_db::reset_db));
+    let app = Router::new().route("/api/reset-db", post(endpoints::reset_db::reset_db));
 
     // run our app with hyper
     // `axum::Server` is a re-export of `hyper::Server`

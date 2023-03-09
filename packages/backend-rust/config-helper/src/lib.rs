@@ -1,12 +1,20 @@
 use serde::Deserialize;
 use std::path::{Path, PathBuf};
 
+pub fn is_test_mode() -> bool {
+    match std::env::var("NODE_ENV") {
+        Ok(s) if s.as_str() == "test" => true,
+        _ => false,
+    }
+}
+
 fn config_path() -> PathBuf {
     let file_dir = Path::new(file!()).parent().expect("src directory");
     let config_dir = file_dir.join("../../../../.config");
-    match std::env::var("NODE_ENV") {
-        Ok(s) if s.as_str() == "test" => config_dir.join("test.yml"),
-        _ => config_dir.join("default.yml"),
+    if is_test_mode() {
+        config_dir.join("test.yml")
+    } else {
+        config_dir.join("default.yml")
     }
 }
 
@@ -20,9 +28,16 @@ pub struct DbConfig {
 }
 
 #[derive(Deserialize)]
+pub struct RedisConfig {
+    pub host: String,
+    pub port: u16,
+}
+
+#[derive(Deserialize)]
 pub struct Config {
     pub port: u16,
     pub db: DbConfig,
+    pub redis: RedisConfig,
 }
 
 pub fn load_config() -> Config {

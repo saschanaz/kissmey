@@ -57,6 +57,7 @@ importers:
       '@fastify/cors': 8.2.0
       '@fastify/http-proxy': 8.4.0
       '@fastify/multipart': 7.4.1
+      '@fastify/reply-from': 9.0.0
       '@fastify/static': 6.9.0
       '@fastify/view': 7.4.1
       '@jest/globals': 29.4.3
@@ -228,6 +229,7 @@ importers:
       '@fastify/cors': 8.2.0
       '@fastify/http-proxy': 8.4.0
       '@fastify/multipart': 7.4.1
+      '@fastify/reply-from': 9.0.0
       '@fastify/static': 6.9.0
       '@fastify/view': 7.4.1
       '@nestjs/common': 9.3.9_mnr6j2del53muneqly5h4y27ai
@@ -391,6 +393,9 @@ importers:
       execa: 6.1.0
       jest: 29.4.3_@types+node@18.14.1
       jest-mock: 29.4.3
+
+  packages/backend-rust:
+    specifiers: {}
 
   packages/frontend:
     specifiers:
@@ -1100,7 +1105,7 @@ packages:
     dependencies:
       ky: 0.30.0
       ky-universal: 0.10.1_ky@0.30.0
-      undici: 5.16.0
+      undici: 5.20.0
     transitivePeerDependencies:
       - web-streams-polyfill
     dev: false
@@ -1387,7 +1392,7 @@ packages:
   /@fastify/http-proxy/8.4.0:
     resolution: {integrity: sha512-H8nwsmawFtKKRE6uhh1BtF1gQi/l147SmLsDGxB0HdYTHzjXz6uSQO3lEVmY7unKMzbArRjdoJQkEGpScszdSw==}
     dependencies:
-      '@fastify/reply-from': 8.3.1
+      '@fastify/reply-from': 8.4.3
       ws: 8.12.1
     transitivePeerDependencies:
       - bufferutil
@@ -1407,8 +1412,8 @@ packages:
       stream-wormhole: 1.1.0
     dev: false
 
-  /@fastify/reply-from/8.3.1:
-    resolution: {integrity: sha512-fRByAvTMXuBuYIimcinukOB3YdmqtYPeoybXIBNY0aPVgetHkmCVffBo/M4pEOib9Pes8wuoYL4VawI65aHl4w==}
+  /@fastify/reply-from/8.4.3:
+    resolution: {integrity: sha512-8QDytjgFfxEbPGBpNj3nj0/QZt+SEyqAPeJ/2/zxxufWdQJ8fz77pEoTO7v/f2rHOJ0rr2ail3Tf6zFIs+78dg==}
     dependencies:
       '@fastify/error': 3.2.0
       end-of-stream: 1.4.4
@@ -1416,7 +1421,19 @@ packages:
       fastify-plugin: 4.5.0
       pump: 3.0.0
       tiny-lru: 10.0.1
-      undici: 5.16.0
+      undici: 5.20.0
+    dev: false
+
+  /@fastify/reply-from/9.0.0:
+    resolution: {integrity: sha512-HGtwsKLlhF3mpUNIUA6AiqUzr51Q04pXl1ZpohjpGQgEUPZQXiGIpu10o4Fz2IFAQiyHaH7x9AHR7qCZDejMzA==}
+    dependencies:
+      '@fastify/error': 3.2.0
+      end-of-stream: 1.4.4
+      fast-querystring: 1.1.0
+      fastify-plugin: 4.5.0
+      pump: 3.0.0
+      tiny-lru: 10.0.1
+      undici: 5.20.0
     dev: false
 
   /@fastify/send/2.0.1:
@@ -3969,7 +3986,7 @@ packages:
   /axios/0.24.0:
     resolution: {integrity: sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==}
     dependencies:
-      follow-redirects: 1.15.2_debug@4.3.4
+      follow-redirects: 1.15.2
     transitivePeerDependencies:
       - debug
     dev: false
@@ -3977,7 +3994,7 @@ packages:
   /axios/0.27.2_debug@4.3.4:
     resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
     dependencies:
-      follow-redirects: 1.15.2_debug@4.3.4
+      follow-redirects: 1.15.2
       form-data: 4.0.0
     transitivePeerDependencies:
       - debug
@@ -7014,7 +7031,7 @@ packages:
       readable-stream: 2.3.7
     dev: false
 
-  /follow-redirects/1.15.2_debug@4.3.4:
+  /follow-redirects/1.15.2:
     resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
     engines: {node: '>=4.0'}
     peerDependencies:
@@ -7022,8 +7039,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dependencies:
-      debug: 4.3.4
 
   /for-each/0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -13331,8 +13346,8 @@ packages:
       undertaker-registry: 1.0.1
     dev: false
 
-  /undici/5.16.0:
-    resolution: {integrity: sha512-KWBOXNv6VX+oJQhchXieUznEmnJMqgXMbs0xxH2t8q/FUAWSJvOSr/rMaZKnX5RIVq7JDn0JbP4BOnKG2SGXLQ==}
+  /undici/5.20.0:
+    resolution: {integrity: sha512-J3j60dYzuo6Eevbawwp1sdg16k5Tf768bxYK4TUJRH7cBM4kFCbf3mOnM/0E3vQYXvpxITbbWmBafaDbxLDz3g==}
     engines: {node: '>=12.18'}
     dependencies:
       busboy: 1.6.0

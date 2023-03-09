@@ -742,6 +742,7 @@ export interface IEndpoint {
 	name: string;
 	meta: IEndpointMeta;
 	params: Schema;
+	proxyToRust: boolean;
 }
 
 const endpoints: IEndpoint[] = (eps as [string, any]).map(([name, ep]) => {
@@ -749,6 +750,7 @@ const endpoints: IEndpoint[] = (eps as [string, any]).map(([name, ep]) => {
 		name: name,
 		get meta() { return ep.meta ?? {}; },
 		get params() { return ep.paramDef; },
+		get proxyToRust() { return ep.proxyToRust; },
 	};
 });
 

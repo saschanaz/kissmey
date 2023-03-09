@@ -1,1 +1,1 @@
-pub mod reset_db;
+pub mod reset;
