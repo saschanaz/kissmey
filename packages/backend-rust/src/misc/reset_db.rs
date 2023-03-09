@@ -19,8 +19,14 @@ enum InformationSchema {
 async fn reset_db_impl() -> Result<(), DbErr> {
     let config = load_config();
 
-		let Config { db } = config;
-		let DbConfig { host, port, db, user, pass } = db;
+    let Config { db } = config;
+    let DbConfig {
+        host,
+        port,
+        db,
+        user,
+        pass,
+    } = db;
 
     let username = utf8_percent_encode(&user[..], CONTROLS);
     let password = utf8_percent_encode(&pass[..], CONTROLS);

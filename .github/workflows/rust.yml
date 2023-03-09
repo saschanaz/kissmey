@@ -52,10 +52,10 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: fmt
-          args: --all -- --check --manifest-path packages/backend-rust/Cargo.toml
+          args: --manifest-path packages/backend-rust/Cargo.toml --all -- --check
 
       - name: Run cargo clippy
         uses: actions-rs/cargo@v1
         with:
           command: clippy
-          args: -- -D warnings --manifest-path packages/backend-rust/Cargo.toml
+          args: --manifest-path packages/backend-rust/Cargo.toml -- -D warnings
