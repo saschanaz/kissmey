@@ -18,7 +18,7 @@ enum InformationSchema {
 pub async fn reset_db() -> Result<(), DbErr> {
     let config = load_config();
 
-    let Config { db } = config;
+    let Config { db, .. } = config;
     let DbConfig {
         host,
         port,

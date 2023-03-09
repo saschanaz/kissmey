@@ -21,6 +21,7 @@ pub struct DbConfig {
 
 #[derive(Deserialize)]
 pub struct Config {
+    pub port: u16,
     pub db: DbConfig,
 }
 
