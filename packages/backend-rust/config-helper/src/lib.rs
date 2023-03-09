@@ -2,10 +2,7 @@ use serde::Deserialize;
 use std::path::{Path, PathBuf};
 
 pub fn is_test_mode() -> bool {
-    match std::env::var("NODE_ENV") {
-        Ok(s) if s.as_str() == "test" => true,
-        _ => false,
-    }
+    matches!(std::env::var("NODE_ENV"), Ok(s) if s.as_str() == "test")
 }
 
 fn config_path() -> PathBuf {
