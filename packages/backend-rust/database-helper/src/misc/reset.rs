@@ -57,18 +57,15 @@ pub async fn reset_db() -> Result<(), DbErr> {
 }
 
 pub async fn reset_redis() -> redis::RedisResult<()> {
-	let config = load_config();
+    let config = load_config();
 
-	let Config { redis, .. } = config;
-	let RedisConfig {
-			host,
-			port,
-	} = redis;
+    let Config { redis, .. } = config;
+    let RedisConfig { host, port } = redis;
 
-	let client = redis::Client::open((host, port)).expect("Connect to Redis");
-	let mut con = client.get_async_connection().await?;
+    let client = redis::Client::open((host, port)).expect("Connect to Redis");
+    let mut con = client.get_async_connection().await?;
 
-	redis::cmd("FLUSHDB").query_async(&mut con).await?;
+    redis::cmd("FLUSHDB").query_async(&mut con).await?;
 
-	Ok(())
+    Ok(())
 }
