@@ -42,6 +42,7 @@ import * as ep___admin_promo_create from './endpoints/admin/promo/create.js';
 import * as ep___admin_queue_clear from './endpoints/admin/queue/clear.js';
 import * as ep___admin_queue_deliverDelayed from './endpoints/admin/queue/deliver-delayed.js';
 import * as ep___admin_queue_inboxDelayed from './endpoints/admin/queue/inbox-delayed.js';
+import * as ep___admin_queue_promote from './endpoints/admin/queue/promote.js';
 import * as ep___admin_queue_stats from './endpoints/admin/queue/stats.js';
 import * as ep___admin_relays_add from './endpoints/admin/relays/add.js';
 import * as ep___admin_relays_list from './endpoints/admin/relays/list.js';
@@ -223,6 +224,7 @@ import * as ep___i_webhooks_update from './endpoints/i/webhooks/update.js';
 import * as ep___i_webhooks_delete from './endpoints/i/webhooks/delete.js';
 import * as ep___meta from './endpoints/meta.js';
 import * as ep___emojis from './endpoints/emojis.js';
+import * as ep___emoji from './endpoints/emoji.js';
 import * as ep___miauth_genToken from './endpoints/miauth/gen-token.js';
 import * as ep___mute_create from './endpoints/mute/create.js';
 import * as ep___mute_delete from './endpoints/mute/delete.js';
@@ -367,6 +369,7 @@ const eps = [
 	['admin/queue/clear', ep___admin_queue_clear],
 	['admin/queue/deliver-delayed', ep___admin_queue_deliverDelayed],
 	['admin/queue/inbox-delayed', ep___admin_queue_inboxDelayed],
+	['admin/queue/promote', ep___admin_queue_promote],
 	['admin/queue/stats', ep___admin_queue_stats],
 	['admin/relays/add', ep___admin_relays_add],
 	['admin/relays/list', ep___admin_relays_list],
@@ -548,6 +551,7 @@ const eps = [
 	['i/webhooks/delete', ep___i_webhooks_delete],
 	['meta', ep___meta],
 	['emojis', ep___emojis],
+	['emoji', ep___emoji],
 	['miauth/gen-token', ep___miauth_genToken],
 	['mute/create', ep___mute_create],
 	['mute/delete', ep___mute_delete],

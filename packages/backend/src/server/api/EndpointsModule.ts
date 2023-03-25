@@ -42,6 +42,7 @@ import * as ep___admin_promo_create from './endpoints/admin/promo/create.js';
 import * as ep___admin_queue_clear from './endpoints/admin/queue/clear.js';
 import * as ep___admin_queue_deliverDelayed from './endpoints/admin/queue/deliver-delayed.js';
 import * as ep___admin_queue_inboxDelayed from './endpoints/admin/queue/inbox-delayed.js';
+import * as ep___admin_queue_promote from './endpoints/admin/queue/promote.js';
 import * as ep___admin_queue_stats from './endpoints/admin/queue/stats.js';
 import * as ep___admin_relays_add from './endpoints/admin/relays/add.js';
 import * as ep___admin_relays_list from './endpoints/admin/relays/list.js';
@@ -223,6 +224,7 @@ import * as ep___i_webhooks_update from './endpoints/i/webhooks/update.js';
 import * as ep___i_webhooks_delete from './endpoints/i/webhooks/delete.js';
 import * as ep___meta from './endpoints/meta.js';
 import * as ep___emojis from './endpoints/emojis.js';
+import * as ep___emoji from './endpoints/emoji.js';
 import * as ep___miauth_genToken from './endpoints/miauth/gen-token.js';
 import * as ep___mute_create from './endpoints/mute/create.js';
 import * as ep___mute_delete from './endpoints/mute/delete.js';
@@ -369,6 +371,7 @@ const $admin_promo_create: Provider = { provide: 'ep:admin/promo/create', useCla
 const $admin_queue_clear: Provider = { provide: 'ep:admin/queue/clear', useClass: ep___admin_queue_clear.default };
 const $admin_queue_deliverDelayed: Provider = { provide: 'ep:admin/queue/deliver-delayed', useClass: ep___admin_queue_deliverDelayed.default };
 const $admin_queue_inboxDelayed: Provider = { provide: 'ep:admin/queue/inbox-delayed', useClass: ep___admin_queue_inboxDelayed.default };
+const $admin_queue_promote: Provider = { provide: 'ep:admin/queue/promote', useClass: ep___admin_queue_promote.default };
 const $admin_queue_stats: Provider = { provide: 'ep:admin/queue/stats', useClass: ep___admin_queue_stats.default };
 const $admin_relays_add: Provider = { provide: 'ep:admin/relays/add', useClass: ep___admin_relays_add.default };
 const $admin_relays_list: Provider = { provide: 'ep:admin/relays/list', useClass: ep___admin_relays_list.default };
@@ -550,6 +553,7 @@ const $i_webhooks_update: Provider = { provide: 'ep:i/webhooks/update', useClass
 const $i_webhooks_delete: Provider = { provide: 'ep:i/webhooks/delete', useClass: ep___i_webhooks_delete.default };
 const $meta: Provider = { provide: 'ep:meta', useClass: ep___meta.default };
 const $emojis: Provider = { provide: 'ep:emojis', useClass: ep___emojis.default };
+const $emoji: Provider = { provide: 'ep:emoji', useClass: ep___emoji.default };
 const $miauth_genToken: Provider = { provide: 'ep:miauth/gen-token', useClass: ep___miauth_genToken.default };
 const $mute_create: Provider = { provide: 'ep:mute/create', useClass: ep___mute_create.default };
 const $mute_delete: Provider = { provide: 'ep:mute/delete', useClass: ep___mute_delete.default };
@@ -700,6 +704,7 @@ const $retention: Provider = { provide: 'ep:retention', useClass: ep___retention
 		$admin_queue_clear,
 		$admin_queue_deliverDelayed,
 		$admin_queue_inboxDelayed,
+		$admin_queue_promote,
 		$admin_queue_stats,
 		$admin_relays_add,
 		$admin_relays_list,
@@ -881,6 +886,7 @@ const $retention: Provider = { provide: 'ep:retention', useClass: ep___retention
 		$i_webhooks_delete,
 		$meta,
 		$emojis,
+		$emoji,
 		$miauth_genToken,
 		$mute_create,
 		$mute_delete,
@@ -1025,6 +1031,7 @@ const $retention: Provider = { provide: 'ep:retention', useClass: ep___retention
 		$admin_queue_clear,
 		$admin_queue_deliverDelayed,
 		$admin_queue_inboxDelayed,
+		$admin_queue_promote,
 		$admin_queue_stats,
 		$admin_relays_add,
 		$admin_relays_list,
@@ -1206,6 +1213,7 @@ const $retention: Provider = { provide: 'ep:retention', useClass: ep___retention
 		$i_webhooks_delete,
 		$meta,
 		$emojis,
+		$emoji,
 		$miauth_genToken,
 		$mute_create,
 		$mute_delete,
