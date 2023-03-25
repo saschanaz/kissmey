@@ -1,6 +1,6 @@
 # Kissmey
 
-A side project to progressively port Misskey's backend core to Rust, ultimately to be a standalone subset of the original one.
+A side project to progressively port Misskey's backend core to Rust, ultimately to be a standalone subset of the original one. Changes are mostly in [/packages/backend-rust](/packages/backend-rust).
 
 No new feature will be born here, see [Misskey](https://github.com/misskey-dev/misskey) for fun things.
 
