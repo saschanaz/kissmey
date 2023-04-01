@@ -3,3 +3,4 @@ packages:
  - 'packages/backend-rust'
  - 'packages/frontend'
  - 'packages/sw'
+ - 'packages/misskey-js'
